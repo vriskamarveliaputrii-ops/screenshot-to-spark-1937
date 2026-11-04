@@ -19,7 +19,7 @@ import { initials } from "@/lib/formatters";
 import { cn } from "@/lib/utils";
 import { authService } from "@/services/authService";
 
-type NavItem = { to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean };
+type NavItem = { to: "/dashboard" | "/reports" | "/map" | "/users" | "/profile" | "/reports/new"; label: string; icon: typeof LayoutDashboard; exact?: boolean };
 
 const adminNav: NavItem[] = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
