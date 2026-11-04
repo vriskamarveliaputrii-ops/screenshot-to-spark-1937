@@ -100,7 +100,7 @@ export function ReportForm({ report }: { report?: Report }) {
   const aiFilled = ai?.label && !ai.uncertain;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit, () => toast.error("Periksa kembali isian formulir"))} className="space-y-6 pb-24" noValidate>
+    <form onSubmit={handleSubmit(onSubmit, () => toast.error("Periksa kembali isian formulir"))} className="space-y-6" noValidate>
       <Card className="rounded-xl shadow-soft">
         <CardHeader><CardTitle className="flex items-center gap-2 text-base"><span className="grid size-6 place-items-center rounded-full bg-primary text-xs text-primary-foreground">1</span> Foto Sampah</CardTitle></CardHeader>
         <CardContent className="space-y-4">
@@ -181,8 +181,8 @@ export function ReportForm({ report }: { report?: Report }) {
         </CardContent>
       </Card>
 
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t bg-background/90 backdrop-blur md:left-auto md:right-0 md:w-[calc(100%-var(--sidebar-w,16rem))]">
-        <div className="mx-auto flex max-w-[1280px] justify-end gap-2 px-4 py-3 sm:px-6 lg:px-8">
+      <div className="sticky bottom-0 z-30 -mx-4 -mb-6 border-t bg-background/90 backdrop-blur sm:-mx-6 lg:-mx-8">
+        <div className="flex justify-end gap-2 px-4 py-3 sm:px-6 lg:px-8">
           <Button type="button" variant="outline" onClick={() => window.history.back()}>Batal</Button>
           <Button type="submit" disabled={save.isPending || predict.isPending}>
             {save.isPending ? <Loader2 className="animate-spin" /> : <Send />} {report ? "Simpan Perubahan" : "Kirim Laporan"}
