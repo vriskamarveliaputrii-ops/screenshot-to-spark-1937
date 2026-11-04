@@ -15,6 +15,9 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated.dashboard'
 import { Route as AuthenticatedReportsIndexRouteImport } from './routes/_authenticated.reports.index'
+import { Route as AuthenticatedReportsNewRouteImport } from './routes/_authenticated.reports.new'
+import { Route as AuthenticatedReportsIdIndexRouteImport } from './routes/_authenticated.reports.$id.index'
+import { Route as AuthenticatedReportsIdEditRouteImport } from './routes/_authenticated.reports.$id.edit'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,20 +49,43 @@ const AuthenticatedReportsIndexRoute =
     path: '/reports/',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedReportsNewRoute = AuthenticatedReportsNewRouteImport.update({
+  id: '/reports/new',
+  path: '/reports/new',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedReportsIdIndexRoute =
+  AuthenticatedReportsIdIndexRouteImport.update({
+    id: '/reports/$id/',
+    path: '/reports/$id/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedReportsIdEditRoute =
+  AuthenticatedReportsIdEditRouteImport.update({
+    id: '/reports/$id/edit',
+    path: '/reports/$id/edit',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/reports/new': typeof AuthenticatedReportsNewRoute
   '/reports/': typeof AuthenticatedReportsIndexRoute
+  '/reports/$id/edit': typeof AuthenticatedReportsIdEditRoute
+  '/reports/$id/': typeof AuthenticatedReportsIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/reports/new': typeof AuthenticatedReportsNewRoute
   '/reports': typeof AuthenticatedReportsIndexRoute
+  '/reports/$id/edit': typeof AuthenticatedReportsIdEditRoute
+  '/reports/$id': typeof AuthenticatedReportsIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -68,13 +94,32 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/reports/new': typeof AuthenticatedReportsNewRoute
   '/_authenticated/reports/': typeof AuthenticatedReportsIndexRoute
+  '/_authenticated/reports/$id/edit': typeof AuthenticatedReportsIdEditRoute
+  '/_authenticated/reports/$id/': typeof AuthenticatedReportsIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/register' | '/dashboard' | '/reports/'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/dashboard'
+    | '/reports/new'
+    | '/reports/'
+    | '/reports/$id/edit'
+    | '/reports/$id/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/register' | '/dashboard' | '/reports'
+  to:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/dashboard'
+    | '/reports/new'
+    | '/reports'
+    | '/reports/$id/edit'
+    | '/reports/$id'
   id:
     | '__root__'
     | '/'
@@ -82,7 +127,10 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/_authenticated/dashboard'
+    | '/_authenticated/reports/new'
     | '/_authenticated/reports/'
+    | '/_authenticated/reports/$id/edit'
+    | '/_authenticated/reports/$id/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -136,17 +184,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedReportsIndexRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/reports/new': {
+      id: '/_authenticated/reports/new'
+      path: '/reports/new'
+      fullPath: '/reports/new'
+      preLoaderRoute: typeof AuthenticatedReportsNewRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/reports/$id/': {
+      id: '/_authenticated/reports/$id/'
+      path: '/reports/$id'
+      fullPath: '/reports/$id/'
+      preLoaderRoute: typeof AuthenticatedReportsIdIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/reports/$id/edit': {
+      id: '/_authenticated/reports/$id/edit'
+      path: '/reports/$id/edit'
+      fullPath: '/reports/$id/edit'
+      preLoaderRoute: typeof AuthenticatedReportsIdEditRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
 interface AuthenticatedRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedReportsNewRoute: typeof AuthenticatedReportsNewRoute
   AuthenticatedReportsIndexRoute: typeof AuthenticatedReportsIndexRoute
+  AuthenticatedReportsIdEditRoute: typeof AuthenticatedReportsIdEditRoute
+  AuthenticatedReportsIdIndexRoute: typeof AuthenticatedReportsIdIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedReportsNewRoute: AuthenticatedReportsNewRoute,
   AuthenticatedReportsIndexRoute: AuthenticatedReportsIndexRoute,
+  AuthenticatedReportsIdEditRoute: AuthenticatedReportsIdEditRoute,
+  AuthenticatedReportsIdIndexRoute: AuthenticatedReportsIdIndexRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
