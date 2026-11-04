@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Loader2 } from "lucide-react";
@@ -35,7 +36,7 @@ export function RegisterPage() {
     navigate({ to: "/dashboard" });
   };
 
-  const field = (name: keyof Values, label: string, el: React.ReactNode) => (
+  const field = (name: keyof Values, label: string, el: ReactNode) => (
     <div className="space-y-1.5">
       <Label htmlFor={name}>{label}</Label>
       {el}
