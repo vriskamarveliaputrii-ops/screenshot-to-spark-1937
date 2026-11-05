@@ -16,11 +16,11 @@ export const STATUS_META: Record<
 
 export const CATEGORY_META: Record<
   WasteCategory,
-  { label: string; icon: LucideIcon; badge: string; text: string; bar: string; chart: string }
+  { label: string; icon: LucideIcon; badge: string; text: string; bar: string; chart: string; hex: string }
 > = {
-  organic: { label: "Organik", icon: Leaf, badge: "bg-organic-soft text-organic", text: "text-organic", bar: "bg-organic", chart: "var(--organic)" },
-  plastic: { label: "Plastik", icon: Milk, badge: "bg-plastic-soft text-plastic", text: "text-plastic", bar: "bg-plastic", chart: "var(--plastic)" },
-  paper: { label: "Kertas", icon: FileText, badge: "bg-paper-soft text-paper", text: "text-paper", bar: "bg-paper", chart: "var(--paper)" },
+  organic: { label: "Organik", icon: Leaf, badge: "bg-organic-soft text-organic", text: "text-organic", bar: "bg-organic", chart: "var(--organic)", hex: "#16a34a" },
+  plastic: { label: "Plastik", icon: Milk, badge: "bg-plastic-soft text-plastic", text: "text-plastic", bar: "bg-plastic", chart: "var(--plastic)", hex: "#0891b2" },
+  paper: { label: "Kertas", icon: FileText, badge: "bg-paper-soft text-paper", text: "text-paper", bar: "bg-paper", chart: "var(--paper)", hex: "#b45309" },
 };
 
 export const ROLE_LABEL = { admin: "Admin", user: "Pengguna" } as const;

@@ -23,7 +23,7 @@ export function DashboardPage() {
   const [range, setRange] = useState("30");
 
   const s = stats?.by_status;
-  const catData = CATEGORY_LIST.map((c) => ({ name: CATEGORY_META[c].label, value: stats?.by_category[c] ?? 0, fill: CATEGORY_META[c].chart }));
+  const catData = CATEGORY_LIST.map((c) => ({ name: CATEGORY_META[c].label, value: stats?.by_category[c] ?? 0, fill: CATEGORY_META[c].hex }));
   const statusData = STATUS_LIST.map((st) => ({ name: STATUS_META[st].label, value: s?.[st] ?? 0, fill: STATUS_META[st].chart }));
   const trend = (stats?.trend ?? []).slice(range === "7" ? -7 : -30).map((t) => ({ ...t, label: t.date.slice(8, 10) + "/" + t.date.slice(5, 7) }));
 
