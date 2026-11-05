@@ -16,7 +16,7 @@ export function ReportMapPage() {
   return (
     <div className="relative -mx-4 -my-6 h-[calc(100vh-4rem)] sm:-mx-6 lg:-mx-8">
       {data && <ReportsMap key={filtered.length} reports={filtered} />}
-      <div className="absolute left-3 top-3 z-[500] w-56 rounded-xl border bg-card/95 p-4 shadow-soft backdrop-blur sm:left-4 sm:top-4">
+      <div className="absolute right-3 top-3 z-[500] w-56 rounded-xl border bg-card/95 p-4 shadow-soft backdrop-blur sm:right-4 sm:top-4">
         <p className="text-sm font-bold">Peta Laporan</p>
         <p className="mb-3 text-xs text-muted-foreground">{filtered.length} titik ditampilkan</p>
         <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Status</p>

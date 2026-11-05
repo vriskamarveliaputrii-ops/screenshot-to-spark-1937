@@ -23,7 +23,7 @@ export function DashboardPage() {
   const [range, setRange] = useState("30");
 
   const s = stats?.by_status;
-  const catData = CATEGORY_LIST.map((c) => ({ name: CATEGORY_META[c].label, value: stats?.by_category[c] ?? 0, fill: CATEGORY_META[c].chart }));
+  const catData = CATEGORY_LIST.map((c) => ({ name: CATEGORY_META[c].label, value: stats?.by_category[c] ?? 0, fill: CATEGORY_META[c].hex }));
   const statusData = STATUS_LIST.map((st) => ({ name: STATUS_META[st].label, value: s?.[st] ?? 0, fill: STATUS_META[st].chart }));
   const trend = (stats?.trend ?? []).slice(range === "7" ? -7 : -30).map((t) => ({ ...t, label: t.date.slice(8, 10) + "/" + t.date.slice(5, 7) }));
 
@@ -67,15 +67,13 @@ export function DashboardPage() {
           <CardContent>
             {isLoading ? <Skeleton className="h-60 w-full" /> : (
               <div className="flex flex-col items-center gap-4 sm:flex-row">
-                <div className="h-56 w-full sm:w-1/2">
-                  <ResponsiveContainer>
-                    <PieChart>
-                      <Pie data={catData} dataKey="value" nameKey="name" innerRadius="60%" outerRadius="90%" paddingAngle={3} stroke="none">
+                <div className="grid h-56 w-full place-items-center sm:w-1/2">
+                    <PieChart width={220} height={220}>
+                      <Pie data={catData} dataKey="value" nameKey="name" innerRadius={62} outerRadius={100} paddingAngle={3} stroke="none" isAnimationActive={false}>
                         {catData.map((d) => <Cell key={d.name} fill={d.fill} />)}
                       </Pie>
                       <Tooltip contentStyle={tooltipStyle} />
                     </PieChart>
-                  </ResponsiveContainer>
                 </div>
                 <ul className="w-full space-y-3 sm:w-1/2">
                   {CATEGORY_LIST.map((c, i) => (
