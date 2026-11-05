@@ -70,7 +70,7 @@ export function DashboardPage() {
                 <div className="h-56 w-full sm:w-1/2">
                   <ResponsiveContainer>
                     <PieChart>
-                      <Pie data={catData} dataKey="value" nameKey="name" innerRadius="60%" outerRadius="90%" paddingAngle={3} stroke="none">
+                      <Pie data={catData} dataKey="value" nameKey="name" innerRadius="60%" outerRadius="90%" paddingAngle={3} stroke="none" isAnimationActive={false}>
                         {catData.map((d) => <Cell key={d.name} fill={d.fill} />)}
                       </Pie>
                       <Tooltip contentStyle={tooltipStyle} />
