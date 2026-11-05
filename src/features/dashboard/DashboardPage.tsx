@@ -67,15 +67,13 @@ export function DashboardPage() {
           <CardContent>
             {isLoading ? <Skeleton className="h-60 w-full" /> : (
               <div className="flex flex-col items-center gap-4 sm:flex-row">
-                <div className="h-56 w-full sm:w-1/2">
-                  <ResponsiveContainer>
-                    <PieChart>
-                      <Pie data={catData} dataKey="value" nameKey="name" innerRadius="60%" outerRadius="90%" paddingAngle={3} stroke="none" isAnimationActive={false}>
+                <div className="grid h-56 w-full place-items-center sm:w-1/2">
+                    <PieChart width={220} height={220}>
+                      <Pie data={catData} dataKey="value" nameKey="name" innerRadius={62} outerRadius={100} paddingAngle={3} stroke="none" isAnimationActive={false}>
                         {catData.map((d) => <Cell key={d.name} fill={d.fill} />)}
                       </Pie>
                       <Tooltip contentStyle={tooltipStyle} />
                     </PieChart>
-                  </ResponsiveContainer>
                 </div>
                 <ul className="w-full space-y-3 sm:w-1/2">
                   {CATEGORY_LIST.map((c, i) => (
